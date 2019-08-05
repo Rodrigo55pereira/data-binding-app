@@ -7,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventBindingComponent implements OnInit {
 
-  buttonName = "My button";
+  buttonName: string = "My button";
   i = 0;
+  spinnerMode: string = "determinate";
+  btnEnable: boolean = true;
+  selectDisabled: boolean = false;
+  selectedOption: number = 1;
+  inputName: string = "john";
 
   constructor() { }
 
@@ -24,4 +29,29 @@ export class EventBindingComponent implements OnInit {
     this.buttonName = "It was clicked " + this.i + " times";
   }
 
+  disable(){
+    this.btnEnable = false;
+    this.spinnerMode = "indeterminate";
+    setTimeout(() => {
+      this.btnEnable = true;
+      this.spinnerMode = "determinate"
+    }, 3000);
+  }
+
+  cbChange(event){
+    console.log(event.checked);
+    this.selectDisabled = event.checked;
+  }
+
+  selectionChange(event){
+    console.log(event);
+    this.selectedOption = event.value;
+  }
+
+  /*
+  inputEvent(event){
+    console.log(event.target.value);
+    console.log(this.inputName);
+  }
+  */
 }
